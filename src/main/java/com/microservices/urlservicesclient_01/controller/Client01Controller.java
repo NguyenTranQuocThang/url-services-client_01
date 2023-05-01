@@ -22,7 +22,7 @@ public class Client01Controller {
     @Autowired
     private Client00Proxy client00Proxy;
 
-    @GetMapping("/client01")
+    @GetMapping("/client01x")
     public ResponseEntity<?> getDataFromClient0UseFeign() {
         var client00 = client00Proxy.retrieveValue();
         return ResponseEntity.ok().body(Client01.builder()
