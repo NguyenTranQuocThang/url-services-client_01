@@ -44,6 +44,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<!-- SB3 :  Micrometer
             > OpenTelemetry
             > Zipkin
@@ -69,7 +73,12 @@
 			<groupId>io.opentelemetry</groupId>
 			<artifactId>opentelemetry-exporter-zipkin</artifactId>
 		</dependency>
-
+		<!-- COMMON CHANGES + -->
+		<!-- Enables tracing of REST API calls made using Feign - V3 ONLY-->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-micrometer</artifactId>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -89,6 +98,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<image>
+						<name>nguyentranquocthangse/mv3-${project.artifactId}:${project.version}</name>
+						<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+					</image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
